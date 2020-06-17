@@ -1,3 +1,3 @@
 # promgraf
 
-List of files for pv , pvc for grafana and prometheus
+List of files for pv , pvc and deployment for grafana and prometheus
