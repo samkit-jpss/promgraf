@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: promdeploy
+
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+
+
+  template:
+    metadata:
+      name: promdeploy
+      labels:
+        app: prometheus
+
+
+    spec:
+      volumes:
+        - name: prom-storage
+          persistentVolumeClaim:
+            claimName: prom-pvc-claim
+        
+      containers:
+        - name: promcontainer
+          image: samkitshah20/prometheus:v1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: "/promdata"
+              name: prom-storage
